@@ -1,0 +1,21 @@
+{% extends 'Birds/base.html' %}
+{% block body %}
+<head>
+    <title>Bird Search</title>
+</head>
+    <body>
+        <p>You searched for: <strong>{{ query }}</strong></p>
+
+        {% if birds %}
+            <p>I found {{ birds|length }} instance. Do you mean:</p>
+            <ol>
+                {% for bird in birds %}
+                <li><a href="{%url 'Birds:birdinfo' pk=bird.pk %}">{{ bird.pk }}</a> in {{bird.Location}} and claimed by {{bird.Experimenter}}</li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <p>No birbs matched your search criteria. Search again.</p>
+        {% endif %}
+    </body>
+
+{% endblock %}
